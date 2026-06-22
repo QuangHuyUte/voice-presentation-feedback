@@ -1,0 +1,26 @@
+{
+  "target_sample_rate": 16000,
+  "target_duration_seconds": 4.0,
+  "common_emotions": [
+    "neutral",
+    "happy",
+    "sad",
+    "angry",
+    "fear",
+    "disgust"
+  ],
+  "split_strategy": "GroupShuffleSplit by speaker_id",
+  "random_state": 42,
+  "baseline_feature_dimension": 248,
+  "datasets": [
+    "CREMA-D",
+    "RAVDESS",
+    "SAVEE",
+    "TESS"
+  ],
+  "excluded_emotions": [
+    "calm",
+    "surprise",
+    "pleasant_surprise"
+  ]
+}
