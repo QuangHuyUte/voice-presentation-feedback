@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="950" viewBox="0 0 1500 950">
+<defs>
+<style>
+.title{font:700 28px 'Segoe UI',Arial,sans-serif;fill:#172033}.sub{font:500 15px 'Segoe UI',Arial,sans-serif;fill:#526071}.label{font:700 17px 'Segoe UI',Arial,sans-serif;fill:#172033}.small{font:500 13px 'Segoe UI',Arial,sans-serif;fill:#4b5563}.tiny{font:500 12px 'Segoe UI',Arial,sans-serif;fill:#64748b}.box{rx:18;ry:18;stroke:#d9e2ef;stroke-width:2}.arrow{stroke:#536173;stroke-width:2.2;fill:none;marker-end:url(#arrow)}.dash{stroke-dasharray:7 6}.pill{rx:14;ry:14}.mono{font:600 13px 'Consolas','Courier New',monospace;fill:#223}
+</style>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#536173"/></marker>
+<linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e8f2ff"/></linearGradient>
+<linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#fef3c7"/></linearGradient>
+<linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#ecfdf5"/><stop offset="1" stop-color="#d1fae5"/></linearGradient>
+<linearGradient id="g4" x1="0" x2="1"><stop offset="0" stop-color="#fdf2f8"/><stop offset="1" stop-color="#fce7f3"/></linearGradient>
+</defs>
+<rect width="1500" height="950" fill="#f8fafc"/>
+<text x="70" y="70" class="title">Branch Input / Output Details</text>
+<text x="70" y="102" class="sub">Clear tensor shapes and responsibilities of each block.</text>
+
+<rect x="70" y="150" width="420" height="660" class="box" fill="url(#g2)"/>
+<text x="110" y="195" class="label">Branch 1: Temporal Acoustic</text>
+<text x="110" y="230" class="mono">Input: [B, 132, T]</text>
+<path d="M280 250 L280 290" class="arrow"/>
+<rect x="120" y="290" width="320" height="58" class="pill" fill="#fff" stroke="#efc773"/>
+<text x="150" y="325" class="small">1D-CNN blocks: local acoustic patterns</text>
+<path d="M280 348 L280 388" class="arrow"/>
+<rect x="120" y="388" width="320" height="58" class="pill" fill="#fff" stroke="#efc773"/>
+<text x="150" y="423" class="small">BiGRU: past and future context</text>
+<path d="M280 446 L280 486" class="arrow"/>
+<rect x="120" y="486" width="320" height="58" class="pill" fill="#fff" stroke="#efc773"/>
+<text x="150" y="521" class="small">Attention pooling: important frames</text>
+<path d="M280 544 L280 584" class="arrow"/>
+<rect x="120" y="584" width="320" height="58" class="pill" fill="#fff" stroke="#efc773"/>
+<text x="150" y="619" class="small">Dense classifier</text>
+<text x="110" y="700" class="mono">Output: prob_temporal [B, 6]</text>
+<text x="110" y="735" class="tiny">Best for: emotion dynamics over time</text>
+
+<rect x="540" y="150" width="420" height="660" class="box" fill="url(#g3)"/>
+<text x="580" y="195" class="label">Branch 2: Spectrogram</text>
+<text x="580" y="230" class="mono">Input: waveform / log-Mel</text>
+<path d="M750 250 L750 290" class="arrow"/>
+<rect x="590" y="290" width="320" height="58" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="620" y="325" class="small">Feature extractor: log-Mel patches</text>
+<path d="M750 348 L750 388" class="arrow"/>
+<rect x="590" y="388" width="320" height="58" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="620" y="423" class="small">Pretrained spectrogram encoder</text>
+<path d="M750 446 L750 486" class="arrow"/>
+<rect x="590" y="486" width="320" height="58" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="620" y="521" class="small">Fallback: 2D-CNN + SE attention</text>
+<path d="M750 544 L750 584" class="arrow"/>
+<rect x="590" y="584" width="320" height="58" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="620" y="619" class="small">Small classifier head</text>
+<text x="580" y="700" class="mono">Output: prob_spectrogram [B, 6]</text>
+<text x="580" y="735" class="tiny">Best for: time-frequency emotion cues</text>
+
+<rect x="1010" y="150" width="420" height="660" class="box" fill="url(#g4)"/>
+<text x="1050" y="195" class="label">Branch 3: Statistical Acoustic</text>
+<text x="1050" y="230" class="mono">Input: X_stats [B, D]</text>
+<path d="M1220 250 L1220 290" class="arrow"/>
+<rect x="1060" y="290" width="320" height="58" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="1090" y="325" class="small">Clip-level statistics</text>
+<path d="M1220 348 L1220 388" class="arrow"/>
+<rect x="1060" y="388" width="320" height="58" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="1090" y="423" class="small">StandardScaler: no leakage</text>
+<path d="M1220 446 L1220 486" class="arrow"/>
+<rect x="1060" y="486" width="320" height="58" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="1090" y="521" class="small">RBF-SVM: nonlinear boundary</text>
+<path d="M1220 544 L1220 584" class="arrow"/>
+<rect x="1060" y="584" width="320" height="58" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="1090" y="619" class="small">Probability calibration</text>
+<text x="1050" y="700" class="mono">Output: prob_statistical [B, 6]</text>
+<text x="1050" y="735" class="tiny">Best for: global acoustic summary</text>
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs>
+<style>
+.title{font:700 28px 'Segoe UI',Arial,sans-serif;fill:#172033}.sub{font:500 15px 'Segoe UI',Arial,sans-serif;fill:#526071}.label{font:700 17px 'Segoe UI',Arial,sans-serif;fill:#172033}.small{font:500 13px 'Segoe UI',Arial,sans-serif;fill:#4b5563}.tiny{font:500 12px 'Segoe UI',Arial,sans-serif;fill:#64748b}.box{rx:18;ry:18;stroke:#d9e2ef;stroke-width:2}.arrow{stroke:#536173;stroke-width:2.2;fill:none;marker-end:url(#arrow)}.dash{stroke-dasharray:7 6}.pill{rx:14;ry:14}.mono{font:600 13px 'Consolas','Courier New',monospace;fill:#223}
+</style>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#536173"/></marker>
+<linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e8f2ff"/></linearGradient>
+<linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#fef3c7"/></linearGradient>
+<linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#ecfdf5"/><stop offset="1" stop-color="#d1fae5"/></linearGradient>
+<linearGradient id="g4" x1="0" x2="1"><stop offset="0" stop-color="#fdf2f8"/><stop offset="1" stop-color="#fce7f3"/></linearGradient>
+</defs>
+<rect width="1400" height="900" fill="#f7f9fc"/>
+<text x="70" y="70" class="title">Multi-Representation Feature Engineering Ensemble</text>
+<text x="70" y="102" class="sub">One normalized speech signal is represented in three complementary ways, then combined by validation-weighted ensemble.</text>
+
+<rect x="90" y="155" width="260" height="88" class="box" fill="url(#g1)"/>
+<text x="125" y="193" class="label">Input audio</text>
+<text x="125" y="220" class="small">16 kHz mono waveform</text>
+
+<path d="M350 199 C410 199 430 199 485 199" class="arrow"/>
+<rect x="485" y="145" width="330" height="108" class="box" fill="#ffffff"/>
+<text x="535" y="187" class="label">Unified Feature Engineering</text>
+<text x="535" y="215" class="small">MFCC • log-Mel • chroma • spectral • energy</text>
+
+<path d="M650 253 C650 310 310 310 310 355" class="arrow"/>
+<path d="M650 253 C650 310 650 310 650 355" class="arrow"/>
+<path d="M650 253 C650 310 990 310 990 355" class="arrow"/>
+
+<rect x="100" y="355" width="370" height="245" class="box" fill="url(#g2)"/>
+<text x="135" y="398" class="label">Branch 1: Temporal Acoustic</text>
+<text x="135" y="428" class="small">Input: [T, 132] frame sequence</text>
+<rect x="135" y="455" width="300" height="34" class="pill" fill="#fff" stroke="#f2c879"/>
+<text x="160" y="477" class="small">1D-CNN: local acoustic patterns</text>
+<rect x="135" y="502" width="300" height="34" class="pill" fill="#fff" stroke="#f2c879"/>
+<text x="160" y="524" class="small">BiGRU: bidirectional context</text>
+<rect x="135" y="549" width="300" height="34" class="pill" fill="#fff" stroke="#f2c879"/>
+<text x="160" y="571" class="small">Attention: important frames</text>
+
+<rect x="515" y="355" width="370" height="245" class="box" fill="url(#g3)"/>
+<text x="550" y="398" class="label">Branch 2: Spectrogram</text>
+<text x="550" y="428" class="small">Input: log-Mel time-frequency map</text>
+<rect x="550" y="455" width="300" height="34" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="575" y="477" class="small">Pretrained audio spectrogram encoder</text>
+<rect x="550" y="502" width="300" height="34" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="575" y="524" class="small">Fallback: 2D-CNN + SE attention</text>
+<rect x="550" y="549" width="300" height="34" class="pill" fill="#fff" stroke="#8bd7b0"/>
+<text x="575" y="571" class="small">Classifier head: 6 emotions</text>
+
+<rect x="930" y="355" width="370" height="245" class="box" fill="url(#g4)"/>
+<text x="965" y="398" class="label">Branch 3: Statistical Acoustic</text>
+<text x="965" y="428" class="small">Input: handcrafted vector [D]</text>
+<rect x="965" y="455" width="300" height="34" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="990" y="477" class="small">Global statistics over full clip</text>
+<rect x="965" y="502" width="300" height="34" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="990" y="524" class="small">StandardScaler fit on train only</text>
+<rect x="965" y="549" width="300" height="34" class="pill" fill="#fff" stroke="#eba8c8"/>
+<text x="990" y="571" class="small">RBF-SVM nonlinear classifier</text>
+
+<path d="M285 600 C285 690 545 660 610 715" class="arrow"/>
+<path d="M700 600 C700 675 700 675 700 715" class="arrow"/>
+<path d="M1115 600 C1115 690 855 660 790 715" class="arrow"/>
+
+<rect x="515" y="715" width="370" height="92" class="box" fill="#ffffff"/>
+<text x="570" y="753" class="label">Validation-weighted Ensemble</text>
+<text x="555" y="780" class="mono">final = Σ(wᵢ · pᵢ) / Σwᵢ</text>
+
+<path d="M885 761 C960 761 985 761 1055 761" class="arrow"/>
+<rect x="1055" y="718" width="245" height="86" class="box" fill="#172033" stroke="#172033"/>
+<text x="1095" y="753" class="label" fill="#fff" style="fill:#fff">Output</text>
+<text x="1095" y="780" class="small" fill="#dbeafe" style="fill:#dbeafe">6 emotion probabilities</text>
+</svg>
